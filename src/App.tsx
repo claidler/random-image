@@ -24,7 +24,12 @@ function App() {
 
   const getCharacter = async () => {
     const randomNumber = getRandomNumber();
-    await onGetCharacter(randomNumber);
+    if (character && randomNumber === character.id) {
+      await getCharacter();
+      return;
+    } else {
+      await onGetCharacter(randomNumber);
+    }
   };
 
   return (
